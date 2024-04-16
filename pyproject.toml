@@ -7,7 +7,9 @@ authors = [
     {name = "Helena Oliveira", email = "helenamesh18@gmail.com"},
     {name = "Oscar Machado", email = "oscarmachado2014@gmail.com"},
 ]
-dependencies = []
+dependencies = [
+    "scikit-learn>=1.4.2",
+]
 requires-python = ">=3.10,<3.12"  
 readme = "README.md"
 license = {text = "MIT"}
