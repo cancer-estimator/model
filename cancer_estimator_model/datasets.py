@@ -25,3 +25,11 @@ def get_lung_cancer_survey_lung_cancer() -> pandas.DataFrame:
 
 def get_lung_cancer_cancer_patient_data_sets() -> pandas.DataFrame:
     return pandas.read_csv(datasets_dir / "lung-cancer/cancer_patient_data_sets.csv")
+
+
+def get_covid_dataset() -> pandas.DataFrame:
+    return pandas.read_csv(datasets_dir / "lung-cancer/covid_dataset.csv", low_memory=False)
+
+
+def get_integrated_dataset() -> pandas.DataFrame:
+    return pandas.read_csv(datasets_dir / "lung-cancer/dataset_integrated.csv", low_memory=False)
