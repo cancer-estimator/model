@@ -1,20 +1,29 @@
-library(readr)
-library(dplyr)
-library(tidyr)
+#### BEGIN: PACKAGE + INSTALLING HANDLING
+# Package names
+packages <- c("readr", "dplyr", "tidyr")
+
+
+# Install packages not yet installed
+installed_packages <- packages %in% rownames(installed.packages())
+if (any(installed_packages == FALSE)) {
+    install.packages(packages[!installed_packages])
+}
+
+# Packages loading
+invisible(lapply(packages, library, character.only = TRUE))
+#### END: PACKAGE + INSTALLING HANDLING
 
 hsearch= function (string, t1,t2,t3){
-
-              paste("1.", grep(string,c(names(t1)),value=TRUE),
-                    "2.", grep(string,c(names(t2)),value=TRUE),
-                    "3.",  grep(string,c(names(t3)),value=TRUE),sep="   ")
-                  
+    paste("1.", grep(string,c(names(t1)),value=TRUE),
+          "2.", grep(string,c(names(t2)),value=TRUE),
+          "3.",  grep(string,c(names(t3)),value=TRUE),sep="   ")
 }
 
 
 
-ds1 <- read_csv("data/ds1.csv")
-ds2 <- read_csv("data/ds2.csv")
-ds3 <- read_csv("data/ds3.csv")
+ds1 <- read_csv("datasets/lung-cancer/survey_lung_cancer.csv")
+ds2 <- read_csv("datasets/lung-cancer/cancer_patient_data_sets.csv")
+ds3 <- read_csv("datasets/lung-cancer/covid_dataset.csv")
 #### Padronizacao basica dos datasets
 
 names(ds2)=toupper(names(ds2)) #headers com nome maisculo
@@ -35,7 +44,7 @@ ds1$LUNG_CANCER <- ifelse(ds1$LUNG_CANCER == "YES", 1, 0)
 
 
   ##### features
-  
+
   ######## 1 AGE_0_9, AGE_10_19, AGE_20_24, AGE_25_59, AGE_60_
   ds2$AGE_0_9 <- as.numeric(ds2$AGE <= 9)
   ds2$AGE_10_19 <- as.numeric(ds2$AGE >= 10 & ds2$AGE <= 19)
@@ -47,7 +56,7 @@ ds1$LUNG_CANCER <- ifelse(ds1$LUNG_CANCER == "YES", 1, 0)
   ds1$AGE_20_24 <- as.numeric(ds1$AGE >= 20 & ds1$AGE <= 24)
   ds1$AGE_25_59 <- as.numeric(ds1$AGE >= 25 & ds1$AGE <= 59)
   ds1$AGE_60_ <- as.numeric(ds1$AGE >= 60)
-  
+
   ######## 2 GENDER_FEMALE, GENDER_MALE
   ds1$GENDER_FEMALE<- as.numeric(ds1$GENDER =="F")
   ds1$GENDER_MALE<- as.numeric(ds1$GENDER =="M")
@@ -55,14 +64,14 @@ ds1$LUNG_CANCER <- ifelse(ds1$LUNG_CANCER == "YES", 1, 0)
   ds2$GENDER_FEMALE<- as.numeric(ds2$GENDER ==2)
   ds2$GENDER_MALE<- as.numeric(ds2$GENDER ==1)
   ds2=ds2 %>% select(-GENDER)
-  
-  
+
+
   ######## 3 SMOKING
 
 
 ds3$SMOKING=NA
-#As of 2022, the WHO estimated that around 20% of the global population aged 15 
-#and over were smokers. 
+#As of 2022, the WHO estimated that around 20% of the global population aged 15
+#and over were smokers.
 
  ######## 4 FATIGUE
 hsearch("FATIGUE",ds1,ds2,ds3)
@@ -117,7 +126,7 @@ ds3$OTHER_SYMPTOMS=2*ds3$FEVER+ds3$DIARRHEA
 hsearch("SNORING",ds1,ds2,ds3)
 ds3$SNORING=as.numeric(ds3$SHORTNESS_OF_BREATH & ds3$NASAL_CONGESTION)
 ds1$SNORING=as.numeric(ds1$FATIGUE &ds1$SHORTNESS_OF_BREATH)
-  
+
 
 ####### 13  SEVERITY (LIFE RISK)
 
@@ -150,8 +159,7 @@ ds3$LUNG_CANCER=NA
 df=bind_rows(ds1,ds2)
 df=bind_rows(df,ds3)
 
-names(df)[which(names(ds2)=="LUNG_CANCER")]="LUNG_CANCER_RISK"
+names(df)[which(names(df)=="LUNG_CANCER")]="LUNG_CANCER_RISK"
 df=df %>% select(-LEVEL,-CONTACT_NO, -CONTACT_YES,-INDEX, -PATIENT_ID)
 
-write.csv(df,"new_cancer_data.csv",na="", row.names=F)
-
+write.csv(df,"datasets/lung-cancer/dataset_integrated.csv",na="", row.names=F)

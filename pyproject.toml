@@ -35,5 +35,5 @@ dev = [
 test = "pytest -vv -p no:cacheprovider --cov=nlp_tir --cov-report xml:tests/coverage.xml --cov-report term -k"
 tests = {composite = ["test test", "coverage json"]}
 notebook = "jupyter lab"
-
+data-integration = "Rscript scripts/data_integration.R"
 
