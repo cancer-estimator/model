@@ -23,16 +23,17 @@ You should have installed:
 After cloning the repository, at the root of the repository call the
 following commands.
 
-Mount datasets folder with proper data for analysis and model search:
-
-``` shell
-dvc pull
-```
 
 Install the libraries necessary to run the code:
 
 ``` shell
 pdm install
+```
+
+Mount datasets folder with proper data for analysis and model search:
+
+``` shell
+dvc pull
 ```
 
 Run the jupyter notebook server with all libraries, including our lib `cancer_estimator_model`:

@@ -29,6 +29,7 @@ dev = [
     "ydata-profiling[notebook,unicode]>=4.7.0",
     "setuptools>=69.2.0",
     "openpyxl>=3.1.2",
+    "dvc[gdrive]>=3.50.1",
 ]
 
 [tool.pdm.scripts]
