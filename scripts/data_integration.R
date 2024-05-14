@@ -29,9 +29,9 @@ ds3 <- read_csv("datasets/lung-cancer/covid_dataset.csv")
 names(ds2)=toupper(names(ds2)) #headers com nome maisculo
 names(ds3)=toupper(names(ds3)) #headers com nome maisculo
 
-ds1$source=1
-ds2$source=2
-ds3$source=3
+ds1$SOURCE=1
+ds2$SOURCE=2
+ds3$SOURCE=3
 
 set.seed(666)
 ds1[3:15]=ds1[3:15]-1
