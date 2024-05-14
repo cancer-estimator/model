@@ -42,3 +42,16 @@ Run the jupyter notebook server with all libraries, including our lib `cancer_es
 ``` shell
 pdm notebook
 ```
+
+## Data integration
+
+To perform data integration you will need the R environment installed
+in your machine, then you can call as:
+
+``` shell
+pdm data-integration
+```
+
+It will integrate all data and write in the path `datasets/lung-cancer/dataset_integrated.csv`.
+
+At first call it may take sometime to install all libraries.
