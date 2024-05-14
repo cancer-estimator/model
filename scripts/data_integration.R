@@ -159,6 +159,8 @@ ds3$LUNG_CANCER=NA
 df=bind_rows(ds1,ds2)
 df=bind_rows(df,ds3)
 
+# We are renaming this to make clear that target variable represents the risk of having cancer,
+# not necessarily have a diagnosis of it. 1 = HIGH RISK, 0 = LOW RISK.
 names(df)[which(names(df)=="LUNG_CANCER")]="LUNG_CANCER_RISK"
 df=df %>% select(-LEVEL,-CONTACT_NO, -CONTACT_YES,-INDEX, -PATIENT_ID)
 
