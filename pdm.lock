@@ -5,7 +5,11 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
+<<<<<<< HEAD
 content_hash = "sha256:111e0f15105f32c315173a90253a94b2fa002459133b981a2cf5db2ce2b169f2"
+=======
+content_hash = "sha256:3240cd60d7a148fc34ac03797e3bca33a357db46d1cb5c6873af83d7e574916b"
+>>>>>>> deb61e9 (Add catboost library)
 
 [[package]]
 name = "aiohttp"
