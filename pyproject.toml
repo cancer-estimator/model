@@ -31,6 +31,7 @@ dev = [
     "setuptools>=69.2.0",
     "openpyxl>=3.1.2",
     "dvc[gdrive]>=3.50.1",
+    "missingno>=0.5.2",
 ]
 
 [tool.pdm.scripts]
