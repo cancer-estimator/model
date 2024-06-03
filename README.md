@@ -33,7 +33,7 @@ pdm install
 Mount datasets folder with proper data for analysis and model search:
 
 ``` shell
-dvc pull
+pdm run dvc pull
 ```
 
 Run the jupyter notebook server with all libraries, including our lib `cancer_estimator_model`:
