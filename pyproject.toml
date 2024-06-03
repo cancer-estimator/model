@@ -32,6 +32,7 @@ dev = [
     "openpyxl>=3.1.2",
     "dvc[gdrive]>=3.50.1",
     "missingno>=0.5.2",
+    "evc @ git+https://github.com/verri/evc@main",
 ]
 
 [tool.pdm.scripts]

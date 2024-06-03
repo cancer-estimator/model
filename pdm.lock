@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:111e0f15105f32c315173a90253a94b2fa002459133b981a2cf5db2ce2b169f2"
+content_hash = "sha256:38602a241b09b3046dbd6c4309c4c3424f833986271da710262535dc64238b90"
 
 [[package]]
 name = "aiohttp"
@@ -573,6 +573,22 @@ files = [
 ]
 
 [[package]]
+name = "cmcrameri"
+version = "1.9"
+requires_python = ">=3.6"
+summary = "Perceptually uniform colormaps by Fabio Crameri"
+groups = ["dev"]
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "packaging",
+]
+files = [
+    {file = "cmcrameri-1.9-py3-none-any.whl", hash = "sha256:daefca10cc405f437ad292bad52f704c2ba8ae692b3e100da8c25f641997e337"},
+    {file = "cmcrameri-1.9.tar.gz", hash = "sha256:56faf9b7f53eb03fed450137bec7dc25c1854929d7b841b9c75616fc2c357640"},
+]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 requires_python = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
@@ -1042,6 +1058,22 @@ groups = ["dev"]
 files = [
     {file = "et_xmlfile-1.1.0-py3-none-any.whl", hash = "sha256:a2ba85d1d6a74ef63837eed693bcb89c3f752169b0e3e7ae5b16ca5e1b3deada"},
     {file = "et_xmlfile-1.1.0.tar.gz", hash = "sha256:8eb9e2bc2f8c97e37a2dc85a09ecdcdec9d8a396530a6d5a33b30b9a92da0c5c"},
+]
+
+[[package]]
+name = "evc"
+version = "0.1.0"
+requires_python = ">=3.8"
+git = "https://github.com/verri/evc"
+ref = "main"
+revision = "e4371ee5866c6c0a2a6bb58ba53f8807353da61f"
+summary = "Tools to evaluate new versions of pipelines to generate machine learning models."
+groups = ["dev"]
+dependencies = [
+    "cmcrameri",
+    "matplotlib",
+    "numpy>=1.21",
+    "scipy",
 ]
 
 [[package]]
