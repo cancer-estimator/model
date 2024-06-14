@@ -33,3 +33,8 @@ def get_covid_dataset() -> pandas.DataFrame:
 
 def get_integrated_dataset() -> pandas.DataFrame:
     return pandas.read_csv(datasets_dir / "lung-cancer/dataset_integrated.csv", low_memory=False)
+
+
+def get_train_dataset() -> pandas.DataFrame:
+    df = get_integrated_dataset()
+    return df[df.SOURCE != 3]
