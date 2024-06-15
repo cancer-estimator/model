@@ -48,11 +48,6 @@ feature_selection = [
     "WEIGHT_LOSS",  # none
     "FREQUENT_COLD",  # none
     "DRY_COUGH",  # none
-    "FEVER",  # none
-    "PAINS",  # none
-    "NASAL_CONGESTION",  # none
-    "RUNNY_NOSE",  # none
-    "DIARRHEA",  # none
 ]
 
 cat_features = [
