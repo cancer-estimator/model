@@ -35,20 +35,17 @@ feature_selection = [
     "COLD_SYMPTOMNS",
     "RESPIRATORY_SYMPTOMNS",
     "SNORING",
-    "AIR_POLLUTION",  # none
     "ALCOHOL_USE",  # none
     "DUST_ALLERGY",  # none
     "OCCUPATIONAL_HAZARDS",  # none
     "GENETIC_RISK",  # none
     "CHRONIC_LUNG_DISEASE",  # none
-    "BALANCED_DIET",  # none
     "OBESITY",  # none
     "PASSIVE_SMOKER",  # none
     "COUGHING_OF_BLOOD",  # none
-    "WEIGHT_LOSS",  # none
     "FREQUENT_COLD",  # none
-    "DRY_COUGH",  # none
 ]
+
 
 cat_features = [
     # # NOTE: code to be used when proper propcessing
