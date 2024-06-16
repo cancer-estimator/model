@@ -4,7 +4,9 @@ import os
 
 import pandas
 
-_base_path = os.getcwd()
+from cancer_estimator_model import io
+
+_base_path = os.getcwd() if not io.is_notebook() else os.path.dirname(os.path.dirname(__file__))
 _datasets_path = os.getenv("DATASETS_DIR", os.path.join(_base_path, "datasets"))
 datasets_dir = Path(_datasets_path)
 
