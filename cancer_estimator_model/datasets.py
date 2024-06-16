@@ -4,8 +4,9 @@ import os
 
 import pandas
 
-_base_path = os.path.dirname(os.path.dirname(__file__))
-datasets_dir = Path(os.path.join(_base_path, "datasets"))
+_base_path = os.getcwd()
+_datasets_path = os.getenv("DATASETS_DIR", os.path.join(_base_path, "datasets"))
+datasets_dir = Path(_datasets_path)
 
 
 def get_breast_cancer_datasets() -> Dict[str, pandas.DataFrame]:
