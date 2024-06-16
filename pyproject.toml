@@ -8,8 +8,8 @@ authors = [
     {name = "Oscar Machado", email = "oscarmachado2014@gmail.com"},
 ]
 dependencies = [
-    "scikit-learn>=1.4.2",
-    "catboost>=1.2.5",
+    # https://github.com/ryukinix/catboost-no-sse4
+    "catboost-no-sse4==1.2.5.2",  # custom catboost build to be lga775-compatible
     "typer>=0.12.3",
 ]
 requires-python = ">=3.10,<3.12"  
@@ -29,6 +29,7 @@ ignore_missing_imports = true
 
 [tool.pdm.dev-dependencies]
 dev = [
+    "scikit-learn>=1.4.2",
     "jupyterlab>=4.1.5",
     "pandas>=2.2.1",
     "ydata-profiling[notebook,unicode]>=4.7.0",
