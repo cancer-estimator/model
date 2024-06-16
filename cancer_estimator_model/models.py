@@ -46,6 +46,20 @@ feature_selection = [
     "FREQUENT_COLD",  # none
 ]
 
+# Generated based on another variables in data integration
+artificial_variables = [
+    "GENDER_FEMALE",
+    "GENDER_MALE",
+    "COLD_SYMPTOMNS",
+    "RESPIRATORY_SYMPTOMNS",
+    "CHRONIC_DISEASE",  # duplicated
+    "ALCOHOL_CONSUMING"  # duplicated
+]
+
+form_variables = [
+    x for x in feature_selection
+    if x not in artificial_variables + ["AGE"]
+]
 
 cat_features = [
     # # NOTE: code to be used when proper propcessing
@@ -88,6 +102,35 @@ def _get_model():
         cat_features=cat_features,
         verbose=100
     )
+
+
+def generate_artificial_variables(df: pandas.DataFrame) -> pandas.DataFrame:
+    """
+    In ds1:
+
+    "COLD_SYMPTOMS" was calculated as "FATIGUE" + "SHORTNESS_OF_BREATH" + "SWALLOWING_DIFFICULTY" + "WHEEZING".
+
+    In ds2:
+
+    "RESPIRATORY_SYMPTOMS" was calculated as "DRY_COUGH" + 3 * "COUGHING_OF_BLOOD" + "FREQUENT_COLD".
+
+    Notes
+    ---
+
+    Expects "GENDER" as column being "Male" and "Female"
+
+    """
+    X = df.fillna(0)  # make easier to do proper equations
+    df["COLD_SYMPTOMNS"] = X["FATIGUE"] + X["SHORTNESS_OF_BREATH"] + X["SWALLOWING_DIFFICULTY"] + X["WHEEZING"]
+    df["RESPIRATORY_SYMPTOMNS"] = X["DRY_COUGH"] + X["COUGHING_OF_BLOOD"] * 3 + X["FREQUENT_COLD"]
+    df["GENDER_MALE"] = X["GENDER"].map(lambda x: int(x.lower() == "male"))
+    df["GENDER_FEMALE"] = X["GENDER"].map(lambda x: int(x.lower() == "female"))
+
+    # Duplicated columns marked as artificial variables
+    df["CHRONIC_DISEASE"] = X["CHRONIC_LUNG_DISEASE"]
+    df["ALCOHOL_CONSUMING"] = X["ALCOHOL_USE"]
+
+    return df
 
 
 def train():
