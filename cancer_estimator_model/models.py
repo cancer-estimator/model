@@ -67,7 +67,6 @@ cat_features = [
     #
     # x for x in feature_selection
     # if x not in ["AGE"]
-
     "FATIGUE",
     "COUGHING",
     "SHORTNESS_OF_BREATH",
@@ -75,8 +74,9 @@ cat_features = [
     "CHEST_PAIN",
     "GENDER_FEMALE",
     "GENDER_MALE",
-    "COLD_SYMPTOMNS",
-    "RESPIRATORY_SYMPTOMNS",
+    # they are not categorical:
+    # "COLD_SYMPTOMNS",
+    # "RESPIRATORY_SYMPTOMNS",
     "SNORING",
 ]
 
