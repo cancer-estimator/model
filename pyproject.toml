@@ -37,11 +37,12 @@ dev = [
     "dvc[gdrive]>=3.50.1",
     "missingno>=0.5.2",
     "evc @ git+https://github.com/verri/evc@main",
+    "pytest-cov>=5.0.0",
 ]
 
 [tool.pdm.scripts]
-test = "pytest -vv -p no:cacheprovider --cov=nlp_tir --cov-report xml:tests/coverage.xml --cov-report term -k"
-tests = {composite = ["test test", "coverage json"]}
+test = "pytest -vv -p no:cacheprovider --cov=cancer_estimator_model --cov-report term -k"
+tests = {composite = ["test test"]}
 notebook = "jupyter lab"
 data-integration = "Rscript scripts/data_integration.R"
 cancer-estimator-model = {call = "cancer_estimator_model.main:app"}
