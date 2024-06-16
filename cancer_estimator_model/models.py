@@ -9,7 +9,7 @@ import pandas
 
 from cancer_estimator_model import datasets
 
-_base_path = os.path.dirname(os.path.dirname(__file__))
+_base_path = os.getcwd()
 _models_path = os.getenv("MODELS_DIR", os.path.join(_base_path, "models"))
 models_dir = Path(_models_path)
 model_path = models_dir / "model.cbm"
@@ -145,7 +145,7 @@ def train():
 
 
 def load() -> CatBoostRegressor:
-    return CatBoostRegressor.load_model(model_path)
+    return CatBoostRegressor().load_model(model_path)
 
 
 def save(model: CatBoostRegressor):
@@ -153,10 +153,24 @@ def save(model: CatBoostRegressor):
     save_feature_importance(model)
 
 
-def save_feature_importance(model: CatBoostRegressor, n_features: int = 15):
+def predict_with_threshold(
+    model: CatBoostRegressor,
+    X: pandas.DataFrame,
+    threshold: float = 0.6
+):
+    y_pred = model.predict(X, prediction_type="Probability")[:, 1]
+    return y_pred, y_pred > threshold
+
+
+def save_feature_importance(model: CatBoostRegressor, n_features: int = 20):
     feature_importance = model.get_feature_importance(type='FeatureImportance')[:n_features]
     feature_names = model.feature_names_
     sorted_idx = feature_importance.argsort()[:n_features]
+    ordered_feature_names = [feature_names[i] for i in sorted_idx]
+
+    with open(models_dir / "features.txt", "w") as f:
+        f.writelines('\n'.join(reversed(ordered_feature_names)))
+    print(f"[train] feature importance saved at: {models_dir / 'features.txt'}")
 
     plt.figure(figsize=(10, 5))
     plt.barh(range(len(sorted_idx)), feature_importance[sorted_idx], align='center')
