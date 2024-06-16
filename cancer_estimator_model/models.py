@@ -153,6 +153,15 @@ def save(model: CatBoostRegressor):
     save_feature_importance(model)
 
 
+def predict_with_threshold(
+    model: CatBoostRegressor,
+    X: pandas.DataFrame,
+    threshold: float = 0.6
+):
+    y_pred = model.predict(X, prediction_type="Probability")[:, 1]
+    return y_pred, y_pred > threshold
+
+
 def save_feature_importance(model: CatBoostRegressor, n_features: int = 20):
     feature_importance = model.get_feature_importance(type='FeatureImportance')[:n_features]
     feature_names = model.feature_names_
